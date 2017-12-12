@@ -23,7 +23,7 @@ class Twiglets extends \Twig_Extension {
    * Gets a unique identifier for this Twig extension.
    */
   public function getName() {
-    return 'twiglets.extension';
+    return 'twiglets.twig_extension';
   }
 
   /**
