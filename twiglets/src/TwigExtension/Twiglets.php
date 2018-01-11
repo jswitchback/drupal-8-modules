@@ -23,7 +23,7 @@ class Twiglets extends \Twig_Extension {
    * Gets a unique identifier for this Twig extension.
    */
   public function getName() {
-    return 'twiglets.extension';
+    return 'twiglets.twig_extension';
   }
 
   /**
@@ -37,6 +37,7 @@ class Twiglets extends \Twig_Extension {
   public static function icon($icon_name) {
     return [
       '#markup' => '<i class="icon icon-' . $icon_name . '"></i>'
+      // '#markup' => '<svg viewBox="0 0 100 100" class="svg-icon svg-icon-' . $icon_name . '"><use xlink:href="#svg-sprite-' . $icon_name . '"></use></svg>',
     ];
   }
 
@@ -57,13 +58,13 @@ class Twiglets extends \Twig_Extension {
    * @return array
    *   A render array to represent the icon.
    */
-  public static function iconLink($icon_name = 'default', $icon_is_first = FALSE, $text, $url, $link_class) {
+  public static function iconLink($icon_name = 'default', $text = '', $url, $link_class, $icon_before_text = FALSE) {
     if (!in_array($url[0], ['/', '#', '?'])) {
       $url = '/' . $url;
     }
     $url = Url::fromUserInput($url);
     $icon = self::icon($icon_name)['#markup'];
-    $link_text = $icon_is_first ? $icon . $text : $text . $icon;
+    $link_text = $icon_before_text ? $icon . $text : $text . $icon;
 
     return [
       '#title' => t($link_text),
