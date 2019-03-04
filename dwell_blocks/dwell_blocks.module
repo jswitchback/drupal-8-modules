@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dwell_blocks.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dwell_blocks_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dwell_blocks module.
+    case 'help.page.dwell_blocks':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom blocks for Dwell') . '</p>';
+      return $output;
+
+    default:
+  }
+}
