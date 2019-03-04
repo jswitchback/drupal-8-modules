@@ -1,0 +1,6 @@
+dwell_sitewide.admin_form:
+  title: 'Sitewide Settings'
+  parent: dwell.admin_index
+  description: 'Configure sitewide settings.'
+  weight: -10
+  route_name: dwell_sitewide.admin_form

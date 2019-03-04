@@ -1,0 +1,5 @@
+name: 'Dwell Extra Fields'
+type: module
+description: 'Custom fields used in Manage Display'
+core: 8.x
+package: 'Custom'

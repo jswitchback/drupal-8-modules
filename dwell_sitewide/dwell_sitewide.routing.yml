@@ -1,0 +1,7 @@
+dwell_sitewide.admin_form:
+  path: '/admin/config/dwell/sitewide'
+  defaults:
+    _form: '\Drupal\dwell_sitewide\DwellSitewideSettingsForm'
+    _title: 'Dwell Digital sitewide settings'
+  requirements:
+    _permission: 'administer account settings'
