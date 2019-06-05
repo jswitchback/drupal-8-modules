@@ -1,0 +1,10 @@
+/* This CSS is used in the admin UI as well */
+
+.layout--example {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layout--example .layout__region {
+  width: 50%;
+}

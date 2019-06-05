@@ -1,0 +1,5 @@
+example_layout:
+  version: VERSION
+  css:
+    theme:
+      layouts/example_layout/example-layout.css: {}

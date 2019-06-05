@@ -1,0 +1,20 @@
+layout_example_layout:
+  label: 'Example layout'
+  path: layouts/example_layout # path to template and CSS
+  template: layout--example-layout # template name wihout html.twig suffix
+  library: extralayouts/example_layout # JS/CSS Library to attach
+  category: 'Extra Layouts' # Future use. Not currently expressed in UI
+  class: '\Drupal\extralayouts\Plugin\Layout\ExampleLayoutClass' # PHP class used to add settings (The PHP class must be in a module)
+  default_region: first # Where to put fields on initial layout builder set up
+  icon_map:
+    - [first, second]
+    - [third, fourth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth

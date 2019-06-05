@@ -1,0 +1,6 @@
+name: 'Extra Layouts'
+type: module
+description: 'Provides additional layouts to use with Layout Builder.'
+core: 8.x
+dependencies:
+  - drupal:layout_discovery

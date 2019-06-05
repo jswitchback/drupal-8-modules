@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Prepares variables for layout templates.
+ *
+ * @param array &$variables
+ *   An associative array containing:
+ *   - content: An associative array containing the properties of the element.
+ *     Properties used: #settings, #layout.
+ */
+function extralayouts_preprocess_layout(&$variables) {
+  $settings = $variables['settings'];
+  $layout = $variables['layout'];
+  $content = $variables['content'];
+}
+
+/**
+ * Implements hook_plugin_filter_TYPE_alter().
+ */
+function  extralayouts_plugin_filter_layout_alter(array &$definitions, array $extra, $consumer) {
+  // Hide the default layout plugins from listings.
+  // $layouts = [
+  //   'layout_onecol',
+  //   'layout_twocol_section',
+  //   'layout_threecol_section',
+  //   'layout_fourcol_section',
+  // ];
+
+  // foreach ($layouts as $layout) {
+  //   if (isset($definitions[$layout])) {
+  //     unset($definitions[$layout]);
+  //   }
+  // }
+}
