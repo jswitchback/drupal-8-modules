@@ -1,0 +1,5 @@
+name: Example Sitewide Settings
+description: Custom sitewide settings admin page
+package: Custom
+core: 8.x
+type: module

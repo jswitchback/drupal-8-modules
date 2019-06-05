@@ -1,5 +1,0 @@
-name: Dwell Sitewide Settings
-description: Custom sitewide settings admin page for Dwell Digital
-package: Dwell
-core: 8.x
-type: module

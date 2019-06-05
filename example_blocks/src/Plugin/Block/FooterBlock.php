@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\dwell_blocks\Plugin\Block;
+namespace Drupal\example_blocks\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;

@@ -1,0 +1,7 @@
+example_sitewide.admin_form:
+  path: '/admin/config/example/sitewide'
+  defaults:
+    _form: '\Drupal\example_sitewide\ExampleSitewideSettingsForm'
+    _title: 'Example sitewide settings'
+  requirements:
+    _permission: 'administer account settings'

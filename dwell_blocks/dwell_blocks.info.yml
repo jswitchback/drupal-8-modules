@@ -1,5 +1,0 @@
-name: 'Dwell Blocks'
-type: module
-description: 'Custom blocks for Dwell'
-core: 8.x
-package: 'Custom'

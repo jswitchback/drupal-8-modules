@@ -7,7 +7,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 /**
  * Implements hook_entity_extra_field_info().
  */
-function dwell_extrafields_entity_extra_field_info()
+function example_extrafields_entity_extra_field_info()
 {
 
   $extra = [];
@@ -28,7 +28,7 @@ function dwell_extrafields_entity_extra_field_info()
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function dwell_extrafields_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode)
+function example_extrafields_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode)
 {
 
   $title = $entity->getTitle();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\dwell_sitewide;
+namespace Drupal\example_sitewide;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -8,15 +8,15 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Configure dwell sitewide settings for this site.
+ * Configure sitewide settings for this site.
  *
  * @internal
  */
-class DwellSitewideSettingsForm extends ConfigFormBase
+class ExampleSitewideSettingsForm extends ConfigFormBase
 {
 
   /**
-   * Constructs a \Drupal\user\DwellSitewideSettingsForm object.
+   * Constructs a \Drupal\user\ExampleSitewideSettingsForm object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
@@ -41,7 +41,7 @@ class DwellSitewideSettingsForm extends ConfigFormBase
    */
   public function getFormId()
   {
-    return 'dwell_sitewide_admin_settings';
+    return 'example_sitewide_admin_settings';
   }
 
   /**
@@ -50,7 +50,7 @@ class DwellSitewideSettingsForm extends ConfigFormBase
   protected function getEditableConfigNames()
   {
     return [
-      'dwell_sitewide.settings',
+      'example_sitewide.settings',
     ];
   }
 
@@ -60,7 +60,7 @@ class DwellSitewideSettingsForm extends ConfigFormBase
   public function buildForm(array $form, FormStateInterface $form_state)
   {
     $form = parent::buildForm($form, $form_state);
-    $config = $this->config('dwell_sitewide.settings');
+    $config = $this->config('example_sitewide.settings');
 
     $form['header'] = [
       '#type' => 'text_format',
@@ -89,7 +89,7 @@ class DwellSitewideSettingsForm extends ConfigFormBase
     $footer = $form_state->getValue('footer');
 
 
-    $this->config('dwell_sitewide.settings')
+    $this->config('example_sitewide.settings')
       ->set('header.value', $header['value'])
       ->set('header.format', $header['format'])
       ->set('footer.value', $footer['value'])
