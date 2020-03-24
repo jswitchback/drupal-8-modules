@@ -1,4 +1,4 @@
-name: "Reformed Worship Blocks"
+name: "Custom Blocks"
 type: module
 description: "Custom blocks including Mailchimp blocks"
 core: 8.x

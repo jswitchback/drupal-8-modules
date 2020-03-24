@@ -35,14 +35,14 @@ class RWMailchimpBlock extends BlockBase
       '#type' => 'textfield',
       '#title' => $this->t('Mailchimp User ID'),
       // '#description' => $this->t(''),
-      '#default_value' => isset($config['mailchimp_user_id']) ? $config['mailchimp_user_id'] : '5d0a468ccba985c5b0985464e',
+      '#default_value' => isset($config['mailchimp_user_id']) ? $config['mailchimp_user_id'] : '',
     ];
 
     $form['mailchimp_form_id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Mailchimp Form ID'),
       // '#description' => $this->t(''),
-      '#default_value' => isset($config['mailchimp_form_id']) ? $config['mailchimp_form_id'] : 'a10c33b2f3',
+      '#default_value' => isset($config['mailchimp_form_id']) ? $config['mailchimp_form_id'] : '',
     ];
 
     $form['content_first'] = [
