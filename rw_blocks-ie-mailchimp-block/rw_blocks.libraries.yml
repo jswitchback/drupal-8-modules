@@ -1,0 +1,6 @@
+mailchimp_block:
+  css:
+    theme:
+      css/mailchimp-block.css: {}
+  # js:
+  #   js/example.js: {}

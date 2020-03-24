@@ -1,0 +1,11 @@
+<?php
+
+function rw_blocks_theme($existing, $type, $theme, $path) {
+  return [
+    'rwmailchimp_block' => [
+      'variables' => [
+        'user_id' => NULL,
+        'form_id' => NULL],
+    ],
+  ];
+}
