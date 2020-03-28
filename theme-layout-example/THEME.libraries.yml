@@ -1,0 +1,7 @@
+# Related docs:
+# https://www.drupal.org/node/2216195
+
+layout_default:
+  css:
+    theme:
+      layouts/default/default.css: {}

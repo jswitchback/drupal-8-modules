@@ -1,0 +1,20 @@
+/*
+ * @file
+ * Provides the layout styles for two-column layout section.
+ */
+
+.layout--default {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layout-default--primary {
+  flex: 0 1 75%;
+}
+
+.layout-default--secondary {
+  flex: 0 1 25%;
+}
+
+
+.
