@@ -1,0 +1,161 @@
+<?php
+
+use Drupal\node\Entity\NodeType;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\node\NodeInterface;
+
+/*
+ * Implements hook_block_access().
+ *
+ * Page title has been added to the content types manage display for node pages.
+ * Hiding page title via the visibility settings is hiding it from View pages too,
+ * So we hide it in code here instead.
+ *
+ */
+function rw_base_block_access(\Drupal\block\Entity\Block $block, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  $show_page_title = TRUE;
+  $node = \Drupal::routeMatch()->getParameter('node');
+  // Hide on any node page. Handling page title in Manage Display
+  if ($node instanceof NodeInterface) {
+    $show_page_title = FALSE;
+  }
+
+  if ($operation == 'view' && $block->getPluginId() == 'page_title_block') {
+    return AccessResult::forbiddenIf($show_page_title == FALSE)->addCacheableDependency($block);
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function rw_base_entity_extra_field_info() {
+
+  $extra = [];
+
+  foreach (NodeType::loadMultiple() as $bundle) {
+
+    $extra['node'][$bundle->id()]['display']['title_field'] = [
+      'label'       => t('Title'),
+      'description' => t('Title field'),
+      'weight'      => 99,
+      'visible'     => FALSE,
+    ];
+
+    $extra['node'][$bundle->id()]['display']['created_field'] = [
+      'label'       => t('Authored on'),
+      'description' => t('Contents created date.'),
+      'weight'      => 100,
+      'visible'     => FALSE,
+    ];
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function rw_base_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $bundle = $entity->bundle();
+
+  if ($display->getComponent('created_field')) {
+    $date = $entity->getCreatedTime();
+    $date = \Drupal::service('date.formatter')->format($date, 'month_day_year');
+    $build['created_field'] = [
+      '#type'     => 'inline_template',
+      '#template' => '<div class="created-date">{{ date }}</div>',
+      '#context'  => [
+        'date' => $date,
+      ],
+    ];
+  }
+
+  if ($display->getComponent('title_field')) {
+    $title = $entity->getTitle();
+    $nid = $entity->id();
+    $options = [];
+    $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $nid], $options);
+
+    if ($view_mode == 'full') {
+      $build['title_field'] = [
+        '#type'     => 'inline_template',
+        '#template' => '<h1 class="page-title">{{ title }}</h1>',
+        '#context'  => [
+          'title' => $title,
+        ],
+      ];
+    } else {
+      $build['title_field'] = [
+        '#type'     => 'inline_template',
+        '#template' => '<h2 class="title"><a href="{{url}}" rel="bookmark">{{ title }}</a></h2>',
+        '#context'  => [
+          'title' => $title,
+          'url' => $url->toString(),
+        ],
+      ];
+    }
+  }
+
+  // Override specific node types
+  switch ($bundle) {
+    case 'issue':
+      if ($view_mode == 'featured') {
+        $build['title_field'] = [
+          '#type'     => 'inline_template',
+          '#template' => '<h3 class="title"><a href="{{url}}">{{ title }}</a></h3>',
+          '#context'  => [
+            'title' => $title,
+            'url' => $url->toString(),
+          ],
+        ];
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function rw_base_token_info() {
+  $info = [];
+  $info['types']['rw_base'] = [
+    'name' => t('Reformed Worship'),
+    'description' => t('Custom tokens to solve use-case problems for the Reformed Worship.'),
+  ];
+
+  $info['tokens']['rw_base']['article_token'] = [
+    'name' => t('Article path token'),
+  ];
+  return $info;
+}
+
+/*
+ * Implements hook_tokens().
+ */
+function rw_base_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+
+  if ($type == 'rw_base' && !empty($data['node'])) {
+    $node = $data['node'];
+    $nid = $node->id();
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'article_token':
+          $text = 'article';
+
+          if ($node->get('field_web_only')->value) {
+            $text = 'blog';
+          }
+
+          $replacements[$original] = $text;
+          break;
+      }
+    }
+  }
+  return $replacements;
+}

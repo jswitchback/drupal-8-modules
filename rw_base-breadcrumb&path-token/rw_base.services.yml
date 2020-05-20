@@ -1,0 +1,5 @@
+services:
+  rw_base.breadcrumb:
+    class: Drupal\rw_base\Breadcrumb\RwBaseBreadcrumbBuilder
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }

@@ -1,0 +1,6 @@
+name: Reformed Worship Base
+type: module
+description: Baseline code
+package: Rapid Development Group
+
+core: "8.x"
